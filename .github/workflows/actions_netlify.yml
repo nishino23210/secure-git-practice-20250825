@@ -1,0 +1,20 @@
+name: deploy to netlify
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      -name: repo checkout
+       uses: action/checkout@v4
+      -name: deployment
+       uses: nwtgck/actions-netlify@v3.0
+       with:
+         publish-dir: '.'
+         production-deploy: true
+         deploy-message: ${{github.event.head_commit.message || github.event.pull_request.title}}
+       env:
+         NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_AUTH_TOKEN}}
+         NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
