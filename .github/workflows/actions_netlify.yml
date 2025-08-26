@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -name: repo checkout
-       uses: action/checkout@v4
+       uses: actions/checkout@v4
       -name: deployment
        uses: nwtgck/actions-netlify@v3.0
        with:
